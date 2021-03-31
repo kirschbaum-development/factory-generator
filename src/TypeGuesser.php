@@ -145,8 +145,9 @@ class TypeGuesser
             case Types::DECIMAL:
             case Types::FLOAT:
                 return 'randomFloat' . ($size ? "($size)" : '');
+            case Types::STRING:
             case Types::TEXT:
-                return 'text';
+                return 'text' . ($size ? "($size)" : '');
             case Types::TIME_MUTABLE:
             case Types::TIME_IMMUTABLE:
                 return 'time';
