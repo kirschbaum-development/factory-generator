@@ -69,6 +69,8 @@ class TypeGuesser
     private function guessBasedOnName($name, $size = null)
     {
         switch ($name) {
+            case 'id':
+                return 'randomNumber' . ($size ? "($size)" : '');
             case 'login':
                 return 'userName';
             case 'emailaddress':
