@@ -80,6 +80,13 @@ class TypeGuesserTest extends TestCase
     }
 
     /** @test */
+    public function it_can_guess_string_values_by_type()
+    {
+        $this->assertEquals('text', $this->typeGuesser->guess('quote', $this->getType()));
+        $this->assertEquals('text(10)', $this->typeGuesser->guess('quote', $this->getType(), 10));
+    }
+
+    /** @test */
     public function it_can_guess_name_values()
     {
         $this->assertEquals('name', $this->typeGuesser->guess('name', $this->getType()));
@@ -220,7 +227,14 @@ class TypeGuesserTest extends TestCase
     /** @test */
     public function it_returns_word_as_default_value()
     {
-        $this->assertEquals('word', $this->typeGuesser->guess('not_guessable', $this->getType()));
+        $this->assertEquals('word', $this->typeGuesser->guess('not_guessable', $this->getType(Types::ARRAY)));
+        $this->assertEquals('word', $this->typeGuesser->guess('not_guessable', $this->getType(Types::ASCII_STRING)));
+        $this->assertEquals('word', $this->typeGuesser->guess('not_guessable', $this->getType(Types::BINARY)));
+        $this->assertEquals('word', $this->typeGuesser->guess('not_guessable', $this->getType(Types::BLOB)));
+        $this->assertEquals('word', $this->typeGuesser->guess('not_guessable', $this->getType(Types::GUID)));
+        $this->assertEquals('word', $this->typeGuesser->guess('not_guessable', $this->getType(Types::JSON)));
+        $this->assertEquals('word', $this->typeGuesser->guess('not_guessable', $this->getType(Types::OBJECT)));
+        $this->assertEquals('word', $this->typeGuesser->guess('not_guessable', $this->getType(Types::SIMPLE_ARRAY)));
     }
 
     /** @test */
