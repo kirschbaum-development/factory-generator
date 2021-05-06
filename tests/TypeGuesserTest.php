@@ -107,6 +107,13 @@ class TypeGuesserTest extends TestCase
     }
 
     /** @test */
+    public function it_can_guess_id_values()
+    {
+        $this->assertEquals('randomNumber', $this->typeGuesser->guess('id', $this->getType()));
+        $this->assertEquals('randomNumber(10)', $this->typeGuesser->guess('id', $this->getType(), 10));
+    }
+
+    /** @test */
     public function it_can_guess_user_name_values()
     {
         $this->assertEquals('username', $this->typeGuesser->guess('username', $this->getType()));
